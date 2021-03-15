@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TodoCardStyled, TodoCardHeaderStyled } from "../../atoms/todo/TodoCard"
 
 export const TodoCard = () => {
