@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { TodoCardStyled, TodoCardHeaderStyled } from "../../atoms/todo/TodoCard"
 
 export const TodoCard = () => {
   return (
-    <div>
-      <div>
+    <TodoCardStyled isOverdue={false}>
+      <TodoCardHeaderStyled>
         <TodoStatusIcon />
         Todo Title
         <TodoMenu />
-      </div>
+      </TodoCardHeaderStyled>
       <div>
         todo content
       </div>
       <div>
         due to
       </div>
-    </div>
+    </TodoCardStyled>
   )
 }
 
