@@ -1834,6 +1834,37 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/Index.tsx":
+/*!********************************!*\
+  !*** ./resources/js/Index.tsx ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var AppRoutes_1 = __webpack_require__(/*! ./pages/AppRoutes */ "./resources/js/pages/AppRoutes.tsx");
+
+var Index = function Index() {
+  return react_1["default"].createElement(AppRoutes_1.AppRoutes, null);
+};
+
+exports.default = Index;
+
+/***/ }),
+
 /***/ "./resources/js/app.tsx":
 /*!******************************!*\
   !*** ./resources/js/app.tsx ***!
@@ -1857,15 +1888,45 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var react_dom_1 = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
-var RootComponent_1 = __importDefault(__webpack_require__(/*! ./components/RootComponent */ "./resources/js/components/RootComponent.tsx"));
+var Index_1 = __importDefault(__webpack_require__(/*! ./Index */ "./resources/js/Index.tsx"));
 
-react_dom_1.render(react_1["default"].createElement(RootComponent_1["default"], null), document.getElementById("app"));
+react_dom_1.render(react_1["default"].createElement(Index_1["default"], null), document.getElementById("app"));
 
 /***/ }),
 
-/***/ "./resources/js/components/RootComponent.tsx":
+/***/ "./resources/js/components/navbar/Bell.tsx":
+/*!*************************************************!*\
+  !*** ./resources/js/components/navbar/Bell.tsx ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.Bell = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Bell = function Bell() {
+  return react_1["default"].createElement("div", null, "Bell");
+};
+
+exports.Bell = Bell;
+
+/***/ }),
+
+/***/ "./resources/js/components/navbar/Navbar.tsx":
 /*!***************************************************!*\
-  !*** ./resources/js/components/RootComponent.tsx ***!
+  !*** ./resources/js/components/navbar/Navbar.tsx ***!
   \***************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -1881,14 +1942,249 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
+exports.Navbar = void 0;
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var RootComponent = function RootComponent() {
-  return react_1["default"].createElement("h1", null, "Hello World!");
+var Bell_1 = __webpack_require__(/*! ./Bell */ "./resources/js/components/navbar/Bell.tsx");
+
+var Avatar_1 = __webpack_require__(/*! ../user/Avatar */ "./resources/js/components/user/Avatar.tsx");
+
+var TodoSummary_1 = __webpack_require__(/*! ../todos/TodoSummary */ "./resources/js/components/todos/TodoSummary.tsx");
+
+var Greetings_1 = __webpack_require__(/*! ../user/Greetings */ "./resources/js/components/user/Greetings.tsx");
+
+var Navbar = function Navbar() {
+  return react_1["default"].createElement("nav", null, react_1["default"].createElement(Greetings_1.Greetings, null), react_1["default"].createElement(TodoSummary_1.TodoSummary, null), react_1["default"].createElement(Bell_1.Bell, null), react_1["default"].createElement(Avatar_1.Avatar, null));
 };
 
-exports.default = RootComponent;
+exports.Navbar = Navbar;
+
+/***/ }),
+
+/***/ "./resources/js/components/todos/TodoCard.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/todos/TodoCard.tsx ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.TodoCard = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var TodoCard = function TodoCard() {
+  return react_1["default"].createElement("div", null, react_1["default"].createElement("div", null, react_1["default"].createElement(TodoStatusIcon, null), "Todo Title", react_1["default"].createElement(TodoMenu, null)), react_1["default"].createElement("div", null, "todo content"), react_1["default"].createElement("div", null, "due to"));
+};
+
+exports.TodoCard = TodoCard;
+
+var TodoStatusIcon = function TodoStatusIcon() {
+  return react_1["default"].createElement("div", null, "status");
+};
+
+var TodoMenu = function TodoMenu() {
+  return react_1["default"].createElement("div", null, "menu");
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/todos/TodoList.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/todos/TodoList.tsx ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.TodoList = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var TodoCard_1 = __webpack_require__(/*! ./TodoCard */ "./resources/js/components/todos/TodoCard.tsx");
+
+var TodoList = function TodoList() {
+  return react_1["default"].createElement("div", null, "Todos", react_1["default"].createElement(TodoCard_1.TodoCard, null));
+};
+
+exports.TodoList = TodoList;
+
+/***/ }),
+
+/***/ "./resources/js/components/todos/TodoSummary.tsx":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/todos/TodoSummary.tsx ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.TodoSummary = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var TodoSummary = function TodoSummary() {
+  return react_1["default"].createElement("div", null, "You have two todo's, one of them is overdue");
+};
+
+exports.TodoSummary = TodoSummary;
+
+/***/ }),
+
+/***/ "./resources/js/components/user/Avatar.tsx":
+/*!*************************************************!*\
+  !*** ./resources/js/components/user/Avatar.tsx ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.Avatar = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Avatar = function Avatar() {
+  return react_1["default"].createElement("div", null, "Avatar");
+};
+
+exports.Avatar = Avatar;
+
+/***/ }),
+
+/***/ "./resources/js/components/user/Greetings.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/user/Greetings.tsx ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.Greetings = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Greetings = function Greetings() {
+  return react_1["default"].createElement("div", null, "Hello, Van Ons");
+};
+
+exports.Greetings = Greetings;
+
+/***/ }),
+
+/***/ "./resources/js/pages/AppRoutes.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/pages/AppRoutes.tsx ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.AppRoutes = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Home_1 = __webpack_require__(/*! ./Home */ "./resources/js/pages/Home.tsx");
+
+var AppRoutes = function AppRoutes() {
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Home_1.Home, null));
+};
+
+exports.AppRoutes = AppRoutes;
+
+/***/ }),
+
+/***/ "./resources/js/pages/Home.tsx":
+/*!*************************************!*\
+  !*** ./resources/js/pages/Home.tsx ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.Home = void 0;
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Navbar_1 = __webpack_require__(/*! ../components/navbar/Navbar */ "./resources/js/components/navbar/Navbar.tsx");
+
+var TodoList_1 = __webpack_require__(/*! ../components/todos/TodoList */ "./resources/js/components/todos/TodoList.tsx");
+
+var Home = function Home() {
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Navbar_1.Navbar, null), react_1["default"].createElement(TodoList_1.TodoList, null));
+};
+
+exports.Home = Home;
 
 /***/ }),
 
@@ -1902,8 +2198,8 @@ exports.default = RootComponent;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _components_RootComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RootComponent */ "./resources/js/components/RootComponent.tsx");
-/* harmony import */ var _components_RootComponent__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_RootComponent__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Index */ "./resources/js/Index.tsx");
+/* harmony import */ var _Index__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Index__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -1912,10 +2208,10 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-document.addEventListener('change', function (e) {
+document.addEventListener("change", function (e) {
   var _e$target, _e$target$form;
 
-  if (!((_e$target = e.target) !== null && _e$target !== void 0 && (_e$target$form = _e$target.form) !== null && _e$target$form !== void 0 && _e$target$form.matches('.todo-item__form'))) {
+  if (!((_e$target = e.target) !== null && _e$target !== void 0 && (_e$target$form = _e$target.form) !== null && _e$target$form !== void 0 && _e$target$form.matches(".todo-item__form"))) {
     return;
   }
 
@@ -1926,10 +2222,10 @@ document.addEventListener('change', function (e) {
     e.target.checked = !e.target.checked;
   });
 });
-var appPlaceholder = document.querySelector('#app');
+var appPlaceholder = document.querySelector("#app");
 
 if (appPlaceholder) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)((_components_RootComponent__WEBPACK_IMPORTED_MODULE_2___default()), {}), appPlaceholder);
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)((_Index__WEBPACK_IMPORTED_MODULE_2___default()), {}), appPlaceholder);
 }
 
 /***/ }),
