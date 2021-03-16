@@ -3,6 +3,7 @@ import { TodoCardStyled, TodoCardSectionStyled } from "../../atoms/todo/TodoCard
 import { TodoStatusIcon } from "./TodoStatusIcon";
 import { ITodo } from "../../types.d";
 import dayjs from "dayjs";
+import { TodoMenu } from "./TodoCardBtn";
 
 interface Props {
   todo: ITodo;
@@ -32,5 +33,4 @@ export const TodoCard = (props: Props) => {
   )
 }
 
-const TodoMenu = () => <div>menu</div>
 const TodoContent = (props: { content: string }) => <div>{props.content.length < 80 ? props.content : `${props.content.substring(0, 80)} ...`}</div>
