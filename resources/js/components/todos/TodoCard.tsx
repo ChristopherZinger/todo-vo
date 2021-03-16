@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TodoCardStyled, TodoCardSectionStyled } from "../../atoms/todo/TodoCard"
 import { TodoStatusIcon } from "./TodoStatusIcon";
 import { ITodo } from "../../types.d";
@@ -6,6 +6,8 @@ import dayjs from "dayjs";
 import { TodoMenuBtn } from "./TodoMenuBtn";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { Modal } from "../../atoms/modal/modal";
+import { UpdateTodoModal } from "./CreateTodoModal";
 
 interface Props {
   todo: ITodo;
@@ -13,27 +15,33 @@ interface Props {
 
 export const TodoCard = (props: Props) => {
   const due_date = dayjs(props.todo.due_date).format("DD MMMM YYYY")
+  const [showEditModal, setShowEditModal] = useState(false);
 
   return (
-    <TodoCardStyled isOverdue={false}>
-      <TodoCardSectionStyled>
-        <TodoStatusIcon todo={props.todo} />
-        {props.todo.title}
-        <TodoMenuBtn todo={props.todo} />
-      </TodoCardSectionStyled>
+    <>
+      <TodoCardStyled isOverdue={false}>
+        <TodoCardSectionStyled>
+          <TodoStatusIcon todo={props.todo} />
+          {props.todo.title}
+          <TodoMenuBtn todo={props.todo} showModal={() => setShowEditModal(true)} />
+        </TodoCardSectionStyled>
 
-      <TodoCardSectionStyled>
-        <div></div>
-        <TodoContent content={props.todo.content} />
-        <div></div>
-      </TodoCardSectionStyled>
+        <TodoCardSectionStyled>
+          <div></div>
+          <TodoContent content={props.todo.content} />
+          <div></div>
+        </TodoCardSectionStyled>
 
-      <TodoCardSectionStyled>
-        <div></div>
-        <div style={{ color: "gray" }}><FontAwesomeIcon icon={faCalendar} color="gray" /> {due_date}</div>
-        <div></div>
-      </TodoCardSectionStyled>
-    </TodoCardStyled>
+        <TodoCardSectionStyled>
+          <div></div>
+          <div style={{ color: "gray" }}><FontAwesomeIcon icon={faCalendar} color="gray" /> {due_date}</div>
+          <div></div>
+        </TodoCardSectionStyled>
+      </TodoCardStyled>
+      {showEditModal && (
+        <UpdateTodoModal close={() => setShowEditModal(false)} todo={props.todo} />
+      )}
+    </>
   )
 }
 

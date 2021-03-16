@@ -4,9 +4,8 @@ import { useGetTodoList } from "../../apiHooks/useGetTodoList";
 import { TodoContainerStyled } from "../../atoms/todo/TodoContainer";
 import { TodoListActions, TodoListContext } from "../../context/todoContext/TodoContext";
 import { CircleBtn } from "../../atoms/circleBtn/CircleBtn";
-import { Modal } from "../../atoms/modal/modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { CreateTodoModal } from "./CreateTodoModal";
+
 
 export const TodoList = () => {
   const { loading, error, data } = useGetTodoList();
@@ -25,41 +24,19 @@ export const TodoList = () => {
           <>loading</>
         )}
 
-        {todoList &&
-          todoList.map((todo) => <TodoCard key={todo.id} todo={todo} />)
-        }
+        {todoList && (todoList.map((todo) => <TodoCard key={todo.id} todo={todo} />))}
       </TodoContainerStyled>
-      <div style={{ position: "fixed", bottom: "20px", left: "50%", transform: "translateX(-50%)" }}>
-        <CircleBtn onClick={() => setShowModal(true)} ></CircleBtn>
-      </div>
+      <AddBtn click={() => setShowModal(true)} />
       {showModal && (
-        <Modal>
-          <div className="wrapper">
-            <div className="container">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h3>Add new todo</h3>
-                <FontAwesomeIcon icon={faTimes} onClick={() => setShowModal(false)} />
-              </div>
-
-              <form>
-                <div>
-                  <input type="test" name="title" />
-                </div>
-
-                <div>
-                  <input type="date" name="date" />
-                </div>
-
-                <div>
-                  <input type="test-area" name="content" />
-                </div>
-
-                <button onClick={() => setShowModal(false)}>save</button>
-              </form>
-            </div>
-          </div>
-        </Modal>
+        <CreateTodoModal close={() => setShowModal(false)} />
       )}
     </>
   )
 }
+
+const AddBtn = (props: { click: () => void }) => <div onClick={props.click} style={{ position: "fixed", bottom: "20px", left: "50%", transform: "translateX(-50%)" }}>
+  <CircleBtn >
+    <span></span>
+    <span></span>
+  </CircleBtn>
+</div>
