@@ -3,7 +3,9 @@ import { TodoCardStyled, TodoCardSectionStyled } from "../../atoms/todo/TodoCard
 import { TodoStatusIcon } from "./TodoStatusIcon";
 import { ITodo } from "../../types.d";
 import dayjs from "dayjs";
-import { TodoMenu } from "./TodoCardBtn";
+import { TodoMenuBtn } from "./TodoMenuBtn";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
   todo: ITodo;
@@ -17,16 +19,18 @@ export const TodoCard = (props: Props) => {
       <TodoCardSectionStyled>
         <TodoStatusIcon todo={props.todo} />
         {props.todo.title}
-        <TodoMenu />
+        <TodoMenuBtn />
       </TodoCardSectionStyled>
+
       <TodoCardSectionStyled>
         <div></div>
         <TodoContent content={props.todo.content} />
         <div></div>
       </TodoCardSectionStyled>
+
       <TodoCardSectionStyled>
         <div></div>
-        <div> {due_date}</div>
+        <div style={{ color: "gray" }}><FontAwesomeIcon icon={faCalendar} color="gray" /> {due_date}</div>
         <div></div>
       </TodoCardSectionStyled>
     </TodoCardStyled>
