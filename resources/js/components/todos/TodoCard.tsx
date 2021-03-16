@@ -1,24 +1,35 @@
 import React from "react";
-import { TodoCardStyled, TodoCardHeaderStyled } from "../../atoms/todo/TodoCard"
+import { TodoCardStyled, TodoCardSectionStyled } from "../../atoms/todo/TodoCard"
+import { TodoStatusIcon } from "./TodoStatusIcon";
+import { ITodo } from "../../types.d";
+import dayjs from "dayjs";
 
-export const TodoCard = () => {
+interface Props {
+  todo: ITodo;
+}
+
+export const TodoCard = (props: Props) => {
+  const due_date = dayjs(props.todo.due_date).format("DD MM YYYY")
+
   return (
     <TodoCardStyled isOverdue={false}>
-      <TodoCardHeaderStyled>
-        <TodoStatusIcon />
-        Todo Title
+      <TodoCardSectionStyled>
+        <TodoStatusIcon done={props.todo.done} />
+        {props.todo.title}
         <TodoMenu />
-      </TodoCardHeaderStyled>
-      <div>
-        todo content
-      </div>
-      <div>
-        due to
-      </div>
+      </TodoCardSectionStyled>
+      <TodoCardSectionStyled>
+        <div></div>
+        <div>{props.todo.content}</div>
+        <div></div>
+      </TodoCardSectionStyled>
+      <TodoCardSectionStyled>
+        <div></div>
+        <div> {due_date}</div>
+        <div></div>
+      </TodoCardSectionStyled>
     </TodoCardStyled>
   )
 }
-
-const TodoStatusIcon = () => <div>status</div>
 
 const TodoMenu = () => <div>menu</div>
