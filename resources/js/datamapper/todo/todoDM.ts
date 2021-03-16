@@ -13,7 +13,6 @@ class TodoDM extends BaseDM {
 
     public convertAPIDetailResponse(data: any): ITodo {
         if (!this.isString(data.content)) {
-            console.log(data);
             throw new Error(
                 `Can't convert request to Todo object, wrong data.content`
             );
@@ -59,7 +58,10 @@ class TodoDM extends BaseDM {
         return {
             content: data.content,
             created_at: new Date(data.created_at),
-            done: data.done,
+            done:
+                typeof data.done === "boolean"
+                    ? data.done
+                    : Boolean(parseInt(data.done)),
             due_date: new Date(data.due_date),
             id: data.id,
             title: data.title,
