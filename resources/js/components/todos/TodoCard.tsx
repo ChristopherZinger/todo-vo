@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const TodoCard = (props: Props) => {
-  const due_date = dayjs(props.todo.due_date).format("DD MM YYYY")
+  const due_date = dayjs(props.todo.due_date).format("DD MMMM YYYY")
 
   return (
     <TodoCardStyled isOverdue={false}>
