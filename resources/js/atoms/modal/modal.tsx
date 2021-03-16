@@ -2,9 +2,9 @@ import styled from "styled-components"
 import { Colors } from "../style-guide";
 
 export const Modal = styled.div`
-  left: 0px;
-  top:0px;
-  position: fixed;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
   background-color: ${Colors.UI02};
   width: 100vw;
   height: 100vh;
@@ -14,6 +14,7 @@ export const Modal = styled.div`
 
   .wrapper {
     background-color: ${Colors.UI00};
+    left: 0px;
     position: fixed; 
     width: 100vw;
     bottom: 0px;
@@ -27,6 +28,7 @@ export const Modal = styled.div`
       transform: translateX(-50%);
       width: 390px;
       min-height: 60vh;
+      max-width: 95%;
     }
   }
 `
