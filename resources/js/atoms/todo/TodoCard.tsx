@@ -30,4 +30,7 @@ export const TodoCardSectionStyled = styled.div`
   grid-template-columns: 2fr 8fr 2fr;
 `
 
-
+export const CardCalendarStyled = styled.div`
+  color: ${Colors.UI03};
+  font-size: 12px;
+`
