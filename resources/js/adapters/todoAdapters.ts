@@ -21,3 +21,8 @@ export const deleteTodo = async (id: number): Promise<number> => {
     const response = await axios.delete(`/api/todos/${id}`);
     return id;
 };
+
+export const createTodo = async (id: number, data: ITodo): Promise<ITodo> => {
+    const response = await axios.post(`/api/todos`, data);
+    return todoDM.convertAPIDetailResponse(response.data);
+};
