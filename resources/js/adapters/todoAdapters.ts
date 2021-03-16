@@ -16,3 +16,8 @@ export const updateTodo = async (id: number, data: ITodo): Promise<ITodo> => {
     const response = await axios.put<ITodo>(`/api/todos/${id}`, data);
     return todoDM.convertAPIDetailResponse(response.data);
 };
+
+export const deleteTodo = async (id: number): Promise<number> => {
+    const response = await axios.delete(`/api/todos/${id}`);
+    return id;
+};

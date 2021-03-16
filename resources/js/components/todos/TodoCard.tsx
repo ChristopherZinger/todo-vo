@@ -19,7 +19,7 @@ export const TodoCard = (props: Props) => {
       <TodoCardSectionStyled>
         <TodoStatusIcon todo={props.todo} />
         {props.todo.title}
-        <TodoMenuBtn />
+        <TodoMenuBtn todo={props.todo} />
       </TodoCardSectionStyled>
 
       <TodoCardSectionStyled>
