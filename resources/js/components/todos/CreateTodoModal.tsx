@@ -9,6 +9,7 @@ import { TodoListActions } from "../../context/todoContext/TodoContext";
 import { useUpdateTodo } from "../../apiHooks/useUpdateTodo";
 import { ITodo } from "../../types.d";
 import { FormikFormStyled } from "../../atoms/form/FormikFormStyled";
+import { Colors } from "../../atoms/style-guide";
 
 type PropsCreate = {
   close: () => void;
@@ -26,9 +27,9 @@ export const CreateTodoModal = (props: PropsCreate) => {
     <Modal>
       <div className="wrapper">
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h3>Add new todo</h3>
-            <FontAwesomeIcon icon={faTimes} onClick={() => props.close()} />
+            <FontAwesomeIcon icon={faTimes} onClick={() => props.close()} color={Colors.UI02} />
           </div>
           <Formik
             initialValues={initialValues}
@@ -87,9 +88,9 @@ export const UpdateTodoModal = (props: PropsUpdate) => {
     <Modal>
       <div className="wrapper">
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h3>Add new todo</h3>
-            <FontAwesomeIcon icon={faTimes} onClick={() => props.close()} />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <h3>Edit new todo</h3>
+            <FontAwesomeIcon icon={faTimes} onClick={() => props.close()} color={Colors.UI02} />
           </div>
           <Formik
             initialValues={initialValues}
