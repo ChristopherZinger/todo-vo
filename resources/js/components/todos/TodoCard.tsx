@@ -14,13 +14,13 @@ export const TodoCard = (props: Props) => {
   return (
     <TodoCardStyled isOverdue={false}>
       <TodoCardSectionStyled>
-        <TodoStatusIcon done={props.todo.done} />
+        <TodoStatusIcon todo={props.todo} />
         {props.todo.title}
         <TodoMenu />
       </TodoCardSectionStyled>
       <TodoCardSectionStyled>
         <div></div>
-        <div>{props.todo.content}</div>
+        <TodoContent content={props.todo.content} />
         <div></div>
       </TodoCardSectionStyled>
       <TodoCardSectionStyled>
@@ -33,3 +33,4 @@ export const TodoCard = (props: Props) => {
 }
 
 const TodoMenu = () => <div>menu</div>
+const TodoContent = (props: { content: string }) => <div>{props.content.length < 80 ? props.content : `${props.content.substring(0, 80)} ...`}</div>
