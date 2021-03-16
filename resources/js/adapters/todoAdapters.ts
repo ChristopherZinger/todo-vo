@@ -1,6 +1,6 @@
 import axios from "axios";
 import { todoDM } from "../datamapper/todo/todoDM";
-import { ITodoList, ITodo } from "../types";
+import { ITodoList, ITodo, ICreateTodo } from "../types";
 
 export const getTodoList = async (): Promise<ITodoList> => {
     const response = await axios.get<ITodoList>("/api/todos");
@@ -22,7 +22,7 @@ export const deleteTodo = async (id: number): Promise<number> => {
     return id;
 };
 
-export const createTodo = async (id: number, data: ITodo): Promise<ITodo> => {
+export const createTodo = async (data: ICreateTodo): Promise<ITodo> => {
     const response = await axios.post(`/api/todos`, data);
     return todoDM.convertAPIDetailResponse(response.data);
 };

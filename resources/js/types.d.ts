@@ -8,4 +8,11 @@ export type ITodo = {
     updated_at: Date;
 };
 
+export type ICreateTodo = {
+    content: string;
+    done: boolean;
+    due_date: Date;
+    title: string;
+};
+
 export type ITodoList = ITodo[];
