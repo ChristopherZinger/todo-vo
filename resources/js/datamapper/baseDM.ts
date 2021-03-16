@@ -8,7 +8,18 @@ export class BaseDM {
     }
 
     public isBoolean(data: any) {
-        return !!data;
+        // is boolean
+        if (typeof data === "boolean") {
+            return true;
+        }
+        // is 0 or 1
+        const b = parseInt(data);
+        if (!isNaN(b)) {
+            if (b === 0 || b === 1) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public isNumber(data: any) {
