@@ -24,7 +24,7 @@ export const TodoList = () => {
   return (
     <>
       <TodoContainerStyled>
-        {!loading && (
+        {loading && (
           <div style={{ left: "50%", top: "50%", position: "absolute" }}>
             <FontAwesomeIcon icon={faSpinner} className="spinner" color={Colors.UI03} />
           </div>
