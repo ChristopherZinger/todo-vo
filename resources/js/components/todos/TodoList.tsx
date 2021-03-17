@@ -5,6 +5,9 @@ import { TodoContainerStyled } from "../../atoms/todo/TodoContainer";
 import { TodoListActions, TodoListContext } from "../../context/todoContext/TodoContext";
 import { CircleBtn } from "../../atoms/circleBtn/CircleBtn";
 import { CreateTodoModal } from "./CreateTodoModal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { Colors } from "../../atoms/style-guide";
 
 
 export const TodoList = () => {
@@ -20,8 +23,10 @@ export const TodoList = () => {
   return (
     <>
       <TodoContainerStyled>
-        {loading && (
-          <>loading</>
+        {!loading && (
+          <div style={{ left: "50%", top: "50%", position: "absolute" }}>
+            <FontAwesomeIcon icon={faSpinner} className="spinner" color={Colors.UI03} />
+          </div>
         )}
 
         {todoList && (todoList.map((todo) => <TodoCard key={todo.id} todo={todo} />))}

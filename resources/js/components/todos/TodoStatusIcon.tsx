@@ -14,7 +14,7 @@ export const TodoStatusIcon = (props: { todo: ITodo, isOverdue: boolean }) => {
     <>
       {loading && (
         <div>
-          <FontAwesomeIcon icon={faSpinner} color="gray" />
+          <FontAwesomeIcon icon={faSpinner} color="gray" className="spinner" />
         </div>
       )}
       {!loading && (

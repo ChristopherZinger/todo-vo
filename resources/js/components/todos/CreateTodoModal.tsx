@@ -134,7 +134,7 @@ const SaveBtn = (props: { loading: boolean, text?: string }) => {
   const text = props.text || "save";
   return (
     <button type="submit" disabled={props.loading}>
-      {!props.loading ? "Save" : <FontAwesomeIcon icon={faSpinner} color="gray" />}
+      {!props.loading ? "Save" : <FontAwesomeIcon icon={faSpinner} color="gray" className="spinner" />}
     </button>
   )
 }
