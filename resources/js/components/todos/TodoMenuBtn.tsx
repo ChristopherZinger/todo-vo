@@ -31,14 +31,11 @@ export const TodoMenuBtn = (props: Props) => {
           } catch (err) {
             console.error(err)
           }
+          if (error) { toast.error("Ups, something went wrong") }
         }}>
           Remove
         </p>
       </DropdownContent>
-
-      {error && (
-        toast.error("Ups, something went wrong")
-      )}
     </Dropdown>
   )
 }

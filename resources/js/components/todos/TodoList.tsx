@@ -36,10 +36,6 @@ export const TodoList = () => {
       {showModal && (
         <CreateTodoModal close={() => setShowModal(false)} />
       )}
-
-      {error && (
-        toast.error("Sorry, can't get data from the server.")
-      )}
     </>
   )
 }

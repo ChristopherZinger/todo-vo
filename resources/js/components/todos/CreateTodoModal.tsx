@@ -47,6 +47,7 @@ export const CreateTodoModal = (props: PropsCreate) => {
                 } catch (err) {
                   console.error(err)
                 }
+                if (error) { toast.error("Ups, something went wrong") }
                 props.close()
               }
             }}
@@ -71,9 +72,6 @@ export const CreateTodoModal = (props: PropsCreate) => {
           </Formik>
         </div>
       </div>
-      {error && (
-        toast.error("Ups, something went wrong")
-      )}
     </Modal>
   )
 }

@@ -30,6 +30,7 @@ export const TodoStatusIcon = (props: { todo: ITodo, isOverdue: boolean }) => {
             } catch (err) {
               console.error(err)
             }
+            if (error) { toast.error("Ups, something went wrong") }
           }
         }
         }>
@@ -39,10 +40,6 @@ export const TodoStatusIcon = (props: { todo: ITodo, isOverdue: boolean }) => {
         </div>
       )
       }
-
-      {error && (
-        toast.error("Ups, something went wrong")
-      )}
     </>
   )
 }
