@@ -42,6 +42,3 @@ mix.js("resources/js/app.js", "public/js")
     .options({ autoprefixer: true })
     .ts("resources/js/app.tsx", "public/js")
     .react();
-
-// .js("resources/js/app.js", "public/js")
-// .react()
