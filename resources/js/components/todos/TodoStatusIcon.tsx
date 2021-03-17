@@ -5,6 +5,7 @@ import { useUpdateTodo } from "../../apiHooks/useUpdateTodo";
 import { ITodo } from "../../types";
 import { TodoListActions } from "../../context/todoContext/TodoContext";
 import { Colors } from "../../atoms/style-guide";
+import { toast } from "react-toastify";
 
 export const TodoStatusIcon = (props: { todo: ITodo, isOverdue: boolean }) => {
   const [updateTodo, { loading, data, error }] = useUpdateTodo();
@@ -20,16 +21,25 @@ export const TodoStatusIcon = (props: { todo: ITodo, isOverdue: boolean }) => {
       {!loading && (
         <div style={{ cursor: "pointer" }} onClick={async () => {
           if (!loading) {
-            const newTodo = await updateTodo(props.todo.id, { ...props.todo, done: !props.todo.done });
-            if (newTodo && todoActions) {
-              todoActions.updateTodo(newTodo)
+            try {
+              const newTodo = await updateTodo(props.todo.id, { ...props.todo, done: !props.todo.done });
+              if (newTodo && todoActions) {
+                todoActions.updateTodo(newTodo)
+              }
+            } catch (err) {
+              console.error(err)
             }
           }
-        }}>
+        }
+        }>
           {props.todo.done && <FontAwesomeIcon icon={faCheckCircle} color="gray" />}
           {!props.todo.done && props.isOverdue && <FontAwesomeIcon icon={faExclamationCircle} color={Colors.ERROR} />}
           {!props.todo.done && !props.isOverdue && <FontAwesomeIcon icon={faCircle} color={Colors.UI03} />}
         </div>
+      )
+      }
+      {error && (
+        toast.error("Ups, something went wrong")
       )}
     </>
   )

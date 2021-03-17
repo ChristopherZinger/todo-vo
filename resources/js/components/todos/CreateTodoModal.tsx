@@ -10,6 +10,7 @@ import { ITodo } from "../../types.d";
 import { FormikFormStyled } from "../../atoms/form/FormikFormStyled";
 import { Colors } from "../../atoms/style-guide";
 import { useCreateTodo } from "../../apiHooks/useCreateTodo";
+import { toast } from "react-toastify";
 
 type PropsCreate = {
   close: () => void;
@@ -33,14 +34,18 @@ export const CreateTodoModal = (props: PropsCreate) => {
             initialValues={initialValues}
             onSubmit={async (values) => {
               if (!loading) {
-                const data = await createTodo({
-                  title: values.title,
-                  content: values.content,
-                  done: false,
-                  due_date: new Date(values.due_date)
-                })
-                if (data && todoActions) {
-                  todoActions.createTodo(data)
+                try {
+                  const data = await createTodo({
+                    title: values.title,
+                    content: values.content,
+                    done: false,
+                    due_date: new Date(values.due_date)
+                  })
+                  if (data && todoActions) {
+                    todoActions.createTodo(data)
+                  }
+                } catch (err) {
+                  console.error(err)
                 }
                 props.close()
               }
@@ -66,6 +71,9 @@ export const CreateTodoModal = (props: PropsCreate) => {
           </Formik>
         </div>
       </div>
+      {error && (
+        toast.error("Ups, something went wrong")
+      )}
     </Modal>
   )
 }
@@ -92,15 +100,21 @@ export const UpdateTodoModal = (props: PropsUpdate) => {
           <Formik
             initialValues={initialValues}
             onSubmit={async (values) => {
-              const data = await updateTodo(props.todo.id, {
-                ...props.todo,
-                title: values.title,
-                content: values.content,
-                done: false,
-                due_date: new Date(values.due_date)
-              })
-              if (data && todoActions) {
-                todoActions.updateTodo(data)
+              if (!loading) {
+                try {
+                  const data = await updateTodo(props.todo.id, {
+                    ...props.todo,
+                    title: values.title,
+                    content: values.content,
+                    done: false,
+                    due_date: new Date(values.due_date)
+                  })
+                  if (data && todoActions) {
+                    todoActions.updateTodo(data)
+                  }
+                } catch (err) {
+                  console.error(err)
+                }
               }
               props.close()
             }}
@@ -126,6 +140,9 @@ export const UpdateTodoModal = (props: PropsUpdate) => {
           </Formik>
         </div>
       </div>
+      {error && (
+        toast.error("Ups, something went wrong")
+      )}
     </Modal>
   )
 }

@@ -8,6 +8,7 @@ import { CreateTodoModal } from "./CreateTodoModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { Colors } from "../../atoms/style-guide";
+import { toast } from "react-toastify";
 
 
 export const TodoList = () => {
@@ -34,6 +35,9 @@ export const TodoList = () => {
       <AddBtn click={() => setShowModal(true)} />
       {showModal && (
         <CreateTodoModal close={() => setShowModal(false)} />
+      )}
+      {error && (
+        toast.error("Sorry, can't get data from the server.")
       )}
     </>
   )

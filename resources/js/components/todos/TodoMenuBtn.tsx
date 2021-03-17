@@ -5,6 +5,7 @@ import { DropdownContent, Dropdown } from "../../atoms/dropdown/Dropdown";
 import { useDeleteTodo } from "../../apiHooks/useDeleteTodo";
 import { TodoListActions } from "../../context/todoContext/TodoContext";
 import { ITodo } from "../../types";
+import { toast } from "react-toastify";
 
 type Props = {
   todo: ITodo,
@@ -21,12 +22,23 @@ export const TodoMenuBtn = (props: Props) => {
       <DropdownContent>
         <p onClick={props.showModal}>Edit</p>
         <p onClick={async () => {
-          const id = await deleteTodo(props.todo.id);
-          if (id && todoActions) {
-            todoActions?.deleteTodoById(props.todo.id);
+          if (!loading) {
+            try {
+              const id = await deleteTodo(props.todo.id);
+              if (id && todoActions) {
+                todoActions?.deleteTodoById(props.todo.id);
+              }
+            } catch (err) {
+              console.error(err)
+            }
           }
-        }}>Remove</p>
+        }}>
+          Remove
+        </p>
       </DropdownContent>
+      {error && (
+        toast.error("Ups, something went wrong")
+      )}
     </Dropdown>
   )
 }
