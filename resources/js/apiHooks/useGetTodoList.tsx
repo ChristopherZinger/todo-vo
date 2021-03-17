@@ -14,6 +14,7 @@ export const useGetTodoList = () => {
         const data = await getTodoList();
         setLoading(false);
         setData(data);
+        return data;
       } catch (err) {
         setLoading(false)
         setError(err);
