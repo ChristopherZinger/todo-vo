@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { deleteTodo } from "../adapters/todoAdapters";
-import { ITodo } from "../types";
 
 type ReturnType = [
   (id: number) => Promise<number | undefined>,
