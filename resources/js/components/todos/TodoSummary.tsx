@@ -16,8 +16,8 @@ export const TodoSummary = () => {
 
   return (
     <>
-      <div>You have <Underline nr={nrOfPendingTodos} /> todo's,</div>
-      <div><Underline nr={nrOfOverdueTodos} /> of them is overdue</div>
+      <div>You have <Underline nr={nrOfPendingTodos} /> {nrOfOverdueTodos > 1 ? "todo's" : "todo"},</div>
+      <div><Underline nr={nrOfOverdueTodos} /> of them {nrOfOverdueTodos > 1 ? "are" : "is"} overdue</div>
     </>
   )
 }
@@ -27,11 +27,11 @@ const Underline = (props: { nr: number }) =>
 
 
 const toText = (nr: number) => {
-  if (nr > 6) return nr;
+  if (nr > 5) return nr;
   if (nr === 5) return "five";
   if (nr === 4) return "four";
   if (nr === 3) return "three";
-  if (nr === 2) return "tow";
+  if (nr === 2) return "two";
   if (nr === 1) return "one";
   if (nr === 0) return "zero";
 }
