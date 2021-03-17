@@ -74,4 +74,9 @@ export const FormikFormStyled = styled(Form)`
     vertical-align: middle;
     background-color: ${Colors.BRAND01}
   }
+
+  button:disabled,
+  button[disabled]{
+    background-color: ${Colors.UI02}
+  }
 `

@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Modal } from "../../atoms/modal/modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { createTodo } from "../../adapters/todoAdapters";
+import { faTimes, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Form, Field } from "formik";
 import dayjs from "dayjs";
 import { TodoListActions } from "../../context/todoContext/TodoContext";
@@ -10,6 +9,7 @@ import { useUpdateTodo } from "../../apiHooks/useUpdateTodo";
 import { ITodo } from "../../types.d";
 import { FormikFormStyled } from "../../atoms/form/FormikFormStyled";
 import { Colors } from "../../atoms/style-guide";
+import { useCreateTodo } from "../../apiHooks/useCreateTodo";
 
 type PropsCreate = {
   close: () => void;
@@ -17,6 +17,7 @@ type PropsCreate = {
 
 export const CreateTodoModal = (props: PropsCreate) => {
   const todoActions = useContext(TodoListActions);
+  const [createTodo, { loading, error, data }] = useCreateTodo();
   const initialValues = {
     title: "",
     content: "",
@@ -27,23 +28,22 @@ export const CreateTodoModal = (props: PropsCreate) => {
     <Modal>
       <div className="wrapper">
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h3>Add new todo</h3>
-            <FontAwesomeIcon icon={faTimes} onClick={() => props.close()} color={Colors.UI02} />
-          </div>
+          <ModalTitle title="Add new todo" close={() => props.close()} />
           <Formik
             initialValues={initialValues}
             onSubmit={async (values) => {
-              const data = await createTodo({
-                title: values.title,
-                content: values.content,
-                done: false,
-                due_date: new Date(values.due_date)
-              })
-              if (data && todoActions) {
-                todoActions.createTodo(data)
+              if (!loading) {
+                const data = await createTodo({
+                  title: values.title,
+                  content: values.content,
+                  done: false,
+                  due_date: new Date(values.due_date)
+                })
+                if (data && todoActions) {
+                  todoActions.createTodo(data)
+                }
+                props.close()
               }
-              props.close()
             }}
           >
             {() =>
@@ -60,7 +60,7 @@ export const CreateTodoModal = (props: PropsCreate) => {
                 <div>
                   <Field type="text" as="textarea" name="content" required />
                 </div>
-                <button type="submit">save</button>
+                <SaveBtn loading={loading} />
               </FormikFormStyled>
             }
           </Formik>
@@ -88,10 +88,7 @@ export const UpdateTodoModal = (props: PropsUpdate) => {
     <Modal>
       <div className="wrapper">
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h3>Edit new todo</h3>
-            <FontAwesomeIcon icon={faTimes} onClick={() => props.close()} color={Colors.UI02} />
-          </div>
+          <ModalTitle title="Edit todo" close={() => props.close()} />
           <Formik
             initialValues={initialValues}
             onSubmit={async (values) => {
@@ -123,12 +120,30 @@ export const UpdateTodoModal = (props: PropsUpdate) => {
                   <Field type="text" name="content" as="textarea" required />
                 </div>
 
-                <button type="submit">save</button>
+                <SaveBtn loading={loading} text="Update" />
               </FormikFormStyled>
             }
           </Formik>
         </div>
       </div>
     </Modal>
+  )
+}
+
+const SaveBtn = (props: { loading: boolean, text?: string }) => {
+  const text = props.text || "save";
+  return (
+    <button type="submit" disabled={props.loading}>
+      {!props.loading ? "Save" : <FontAwesomeIcon icon={faSpinner} color="gray" />}
+    </button>
+  )
+}
+
+const ModalTitle = (props: { title: string, close: () => void }) => {
+  return (
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <h3>{props.title}</h3>
+      <FontAwesomeIcon icon={faTimes} onClick={() => props.close()} color={Colors.UI02} />
+    </div>
   )
 }
