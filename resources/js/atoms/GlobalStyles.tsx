@@ -1,8 +1,10 @@
 import { createGlobalStyle } from "styled-components"
 
 export const GlobalStyles = createGlobalStyle`
-    
+  
+
   body {
+    min-width: fit-content;
     font-family: 'Nunito', sans-serif;
     /* font-family: 'Raleway', sans-serif;  */
   }
