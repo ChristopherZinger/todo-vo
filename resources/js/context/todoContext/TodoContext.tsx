@@ -12,10 +12,6 @@ const initialValue: ITodoList = [];
 export const TodoListContext = createContext(initialValue)
 export const TodoListActions = createContext<IActions | undefined>(undefined)
 
-type Props = {
-  children: React.ReactNode
-}
-
 export const TodoContextWrapper = (props: { children: React.ReactNode }) => {
   const [todoList, setTodoList] = useState(initialValue)
 

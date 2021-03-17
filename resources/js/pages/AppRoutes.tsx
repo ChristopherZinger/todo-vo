@@ -1,10 +1,7 @@
 import React from "react";
 import { Home } from "./Home";
 
-export const AppRoutes = () => {
-  return (
-    <>
-      <Home />
-    </>
-  )
-}
+// here we would add react routes when app gets bigger
+
+export const AppRoutes = () =>
+  <Home />

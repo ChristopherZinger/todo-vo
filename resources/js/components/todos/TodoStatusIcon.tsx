@@ -18,6 +18,7 @@ export const TodoStatusIcon = (props: { todo: ITodo, isOverdue: boolean }) => {
           <FontAwesomeIcon icon={faSpinner} color="gray" className="spinner" />
         </div>
       )}
+
       {!loading && (
         <div style={{ cursor: "pointer" }} onClick={async () => {
           if (!loading) {
@@ -38,6 +39,7 @@ export const TodoStatusIcon = (props: { todo: ITodo, isOverdue: boolean }) => {
         </div>
       )
       }
+
       {error && (
         toast.error("Ups, something went wrong")
       )}

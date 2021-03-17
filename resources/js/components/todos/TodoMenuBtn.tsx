@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { DropdownContent, Dropdown } from "../../atoms/dropdown/Dropdown";
@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const TodoMenuBtn = (props: Props) => {
-  const [deleteTodo, { loading, data, error }] = useDeleteTodo();
+  const [deleteTodo, { loading, error }] = useDeleteTodo();
   const todoActions = useContext(TodoListActions);
 
   return (
@@ -22,20 +22,20 @@ export const TodoMenuBtn = (props: Props) => {
       <DropdownContent>
         <p onClick={props.showModal}>Edit</p>
         <p onClick={async () => {
-          if (!loading) {
-            try {
-              const id = await deleteTodo(props.todo.id);
-              if (id && todoActions) {
-                todoActions?.deleteTodoById(props.todo.id);
-              }
-            } catch (err) {
-              console.error(err)
+          if (loading) { return };
+          try {
+            const id = await deleteTodo(props.todo.id);
+            if (id && todoActions) {
+              todoActions?.deleteTodoById(props.todo.id);
             }
+          } catch (err) {
+            console.error(err)
           }
         }}>
           Remove
         </p>
       </DropdownContent>
+
       {error && (
         toast.error("Ups, something went wrong")
       )}

@@ -10,7 +10,6 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { Colors } from "../../atoms/style-guide";
 import { toast } from "react-toastify";
 
-
 export const TodoList = () => {
   const { loading, error, data } = useGetTodoList();
   const todoList = useContext(TodoListContext);
@@ -33,9 +32,11 @@ export const TodoList = () => {
         {todoList && (todoList.map((todo) => <TodoCard key={todo.id} todo={todo} />))}
       </TodoContainerStyled>
       <AddBtn click={() => setShowModal(true)} />
+
       {showModal && (
         <CreateTodoModal close={() => setShowModal(false)} />
       )}
+
       {error && (
         toast.error("Sorry, can't get data from the server.")
       )}

@@ -28,7 +28,7 @@ export const TodoCard = (props: Props) => {
       <TodoCardStyled isOverdue={isOverdue}>
         <TodoCardSectionStyled>
           <TodoStatusIcon todo={props.todo} isOverdue={isOverdue} />
-          <h4 style={{ color: isOverdue ? Colors.ERROR : Colors.UI03 }}>{props.todo.title}</h4>
+          <h4 style={{ color: isOverdue ? Colors.ERROR : "black" }}>{props.todo.title}</h4>
           <TodoMenuBtn todo={props.todo} showModal={() => setShowEditModal(true)} />
         </TodoCardSectionStyled>
 

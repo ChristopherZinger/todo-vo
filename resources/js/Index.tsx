@@ -1,4 +1,4 @@
-import { Root } from 'postcss';
+// import { Root } from 'postcss';
 import React from 'react';
 import { GlobalStyles } from './atoms/GlobalStyles';
 import { AppRoutes } from "./pages/AppRoutes";
